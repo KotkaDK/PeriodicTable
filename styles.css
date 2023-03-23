@@ -27,6 +27,33 @@ body {
   position: relative;
   user-select: none;
   border-radius: 2px;
+  cursor: pointer;
+}
+
+.ElementCard:hover {
+  width: 96px;
+  height: 96px;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.ElementCard:hover .ElementWeight {
+  font-size: 16px;
+}
+
+.ElementCard:hover .ElementNumber {
+  font-size: 16px;
+}
+
+.ElementCard:hover .ElementSymbol {
+  font-size: 32px;
+}
+
+.ElementCard:hover .ElementName {
+  font-size: 16px;
 }
 
 .ElementWeight {
@@ -83,6 +110,7 @@ body {
   align-content: center;
   justify-content: center;
   gap: 4px;
+  user-select: none;
 }
 
 .Title {
@@ -96,13 +124,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 }
 
 .Word {
   padding: 4px;
   height: fit-content;
   border-radius: 2px;
+  cursor: pointer;
 }
+
+
 
 .NonMetal { background-color: #8E5EB2; }
 .AlkaliMetal { background-color: #FC466B; }
