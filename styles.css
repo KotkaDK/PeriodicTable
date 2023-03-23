@@ -1,0 +1,236 @@
+:root {
+  --dark              : #1A1A1A;
+  --dark-grey         : #262626;
+  --medium-dark-grey  : #555555;
+  --grey              : #848484;
+  --medium-light-grey : #B3B3B3;
+  --light-grey        : #E2E2E2;
+  --light             : #F1F1F1;
+}
+
+body {
+  margin: 32px;
+  padding: 32px;
+  background-color: var(--light-grey);
+}
+
+.text {
+  font-family: 'Oswald', sans-serif;
+  color: var(--light);
+  margin: 0;
+}
+
+.ElementCard {
+  background-color: var(--dark);
+  height: 72px;
+  aspect-ratio: 1/1;
+  position: relative;
+  user-select: none;
+  border-radius: 2px;
+}
+
+.ElementWeight {
+  font-size: 12px;
+  position: absolute;
+  top: 4px;
+  left: 6px;
+}
+
+.ElementNumber {
+  font-size: 12px;
+  position: absolute;
+  top: 4px;
+  right: 6px;
+}
+
+.ElementSymbol {
+  font-size: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 400;
+}
+
+.ElementName {
+  font-size: 12px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 4px;
+}
+
+#PeriodicTable {
+  padding: 64px;
+  display: grid;
+  width: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  grid-template-columns: repeat(18, 72px);
+  grid-template-rows: repeat(7, 72px) 32px repeat(2, 72px);
+  grid-gap: 2px;
+}
+
+.Legend {
+  width: 442px;
+  height: 146px;
+  grid-column: 5 / span 1;
+  grid-row: 2 / span 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.Title {
+  width: 738px;
+  height: 72px;
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+  color: var(--dark);
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Word {
+  padding: 4px;
+  height: fit-content;
+  border-radius: 2px;
+}
+
+.NonMetal { background-color: #8E5EB2; }
+.AlkaliMetal { background-color: #FC466B; }
+.AlkalineEarthMetal { background-color: #FB7D46; }
+.TransitionMetal { background-color: #1EBC73; }
+.PostTransitionMetal { background-color: #FAB420; }
+.Metalloid { background-color: #FB9933; }
+.Halogen { background-color: #2FBCB7; }
+.NobleGas { background-color: #8CB84A; }
+.Lanthanide { background-color: #C5528F; }
+.Actinide { background-color: #678DD7; }
+.Unknown { background-color: #FC6259; }
+
+.H { grid-column: 1 / span 1; grid-row: 1 / span 1; }
+.He { grid-column: 18 / span 1; grid-row: 1 / span 1; }
+.Li { grid-column: 1 / span 1; grid-row: 2 / span 1; }
+.Be { grid-column: 2 / span 1; grid-row: 2 / span 1; }
+.B { grid-column: 13 / span 1; grid-row: 2 / span 1; }
+.C { grid-column: 14 / span 1; grid-row: 2 / span 1; }
+.N { grid-column: 15 / span 1; grid-row: 2 / span 1; }
+.O { grid-column: 16 / span 1; grid-row: 2 / span 1; }
+.F { grid-column: 17 / span 1; grid-row: 2 / span 1; }
+.Ne { grid-column: 18 / span 1; grid-row: 2 / span 1; }
+.Na { grid-column: 1 / span 1; grid-row: 3 / span 1; }
+.Mg { grid-column: 2 / span 1; grid-row: 3 / span 1; }
+.Al { grid-column: 13 / span 1; grid-row: 3 / span 1; }
+.Si { grid-column: 14 / span 1; grid-row: 3 / span 1; }
+.P { grid-column: 15 / span 1; grid-row: 3 / span 1; }
+.S { grid-column: 16 / span 1; grid-row: 3 / span 1; }
+.Cl { grid-column: 17 / span 1; grid-row: 3 / span 1; }
+.Ar { grid-column: 18 / span 1; grid-row: 3 / span 1; }
+.K { grid-column: 1 / span 1; grid-row: 4 / span 1; }
+.Ca { grid-column: 2 / span 1; grid-row: 4 / span 1; }
+.Sc { grid-column: 3 / span 1; grid-row: 4 / span 1; }
+.Ti { grid-column: 4 / span 1; grid-row: 4 / span 1; }
+.V { grid-column: 5 / span 1; grid-row: 4 / span 1; }
+.Cr { grid-column: 6 / span 1; grid-row: 4 / span 1; }
+.Mn { grid-column: 7 / span 1; grid-row: 4 / span 1; }
+.Fe { grid-column: 8 / span 1; grid-row: 4 / span 1; }
+.Co { grid-column: 9 / span 1; grid-row: 4 / span 1; }
+.Ni { grid-column: 10 / span 1; grid-row: 4 / span 1; }
+.Cu { grid-column: 11 / span 1; grid-row: 4 / span 1; }
+.Zn { grid-column: 12 / span 1; grid-row: 4 / span 1; }
+.Ga { grid-column: 13 / span 1; grid-row: 4 / span 1; }
+.Ge { grid-column: 14 / span 1; grid-row: 4 / span 1; }
+.As { grid-column: 15 / span 1; grid-row: 4 / span 1; }
+.Se { grid-column: 16 / span 1; grid-row: 4 / span 1; }
+.Br { grid-column: 17 / span 1; grid-row: 4 / span 1; }
+.Kr { grid-column: 18 / span 1; grid-row: 4 / span 1; }
+.Rb { grid-column: 1 / span 1; grid-row: 5 / span 1; }
+.Sr { grid-column: 2 / span 1; grid-row: 5 / span 1; }
+.Y { grid-column: 3 / span 1; grid-row: 5 / span 1; }
+.Zr { grid-column: 4 / span 1; grid-row: 5 / span 1; }
+.Nb { grid-column: 5 / span 1; grid-row: 5 / span 1; }
+.Mo { grid-column: 6 / span 1; grid-row: 5 / span 1; }
+.Tc { grid-column: 7 / span 1; grid-row: 5 / span 1; }
+.Ru { grid-column: 8 / span 1; grid-row: 5 / span 1; }
+.Rh { grid-column: 9 / span 1; grid-row: 5 / span 1; }
+.Pd { grid-column: 10 / span 1; grid-row: 5 / span 1; }
+.Ag { grid-column: 11 / span 1; grid-row: 5 / span 1; }
+.Cd { grid-column: 12 / span 1; grid-row: 5 / span 1; }
+.In { grid-column: 13 / span 1; grid-row: 5 / span 1; }
+.Sn { grid-column: 14 / span 1; grid-row: 5 / span 1; }
+.Sb { grid-column: 15 / span 1; grid-row: 5 / span 1; }
+.Te { grid-column: 16 / span 1; grid-row: 5 / span 1; }
+.I { grid-column: 17 / span 1; grid-row: 5 / span 1; }
+.Xe { grid-column: 18 / span 1; grid-row: 5 / span 1; }
+.Cs { grid-column: 1 / span 1; grid-row: 6 / span 1; }
+.Ba { grid-column: 2 / span 1; grid-row: 6 / span 1; }
+.La { grid-column: 3 / span 1; grid-row: 9 / span 1; }
+.Ce { grid-column: 4 / span 1; grid-row: 9 / span 1; }
+.Pr { grid-column: 5 / span 1; grid-row: 9 / span 1; }
+.Nd { grid-column: 6 / span 1; grid-row: 9 / span 1; }
+.Pm { grid-column: 7 / span 1; grid-row: 9 / span 1; }
+.Sm { grid-column: 8 / span 1; grid-row: 9 / span 1; }
+.Eu { grid-column: 9 / span 1; grid-row: 9 / span 1; }
+.Gd { grid-column: 10 / span 1; grid-row: 9 / span 1; }
+.Tb { grid-column: 11 / span 1; grid-row: 9 / span 1; }
+.Dy { grid-column: 12 / span 1; grid-row: 9 / span 1; }
+.Ho { grid-column: 13 / span 1; grid-row: 9 / span 1; }
+.Er { grid-column: 14 / span 1; grid-row: 9 / span 1; }
+.Tm { grid-column: 15 / span 1; grid-row: 9 / span 1; }
+.Yb { grid-column: 16 / span 1; grid-row: 9 / span 1; }
+.Lu { grid-column: 17 / span 1; grid-row: 9 / span 1; }
+.Hf { grid-column: 4 / span 1; grid-row: 6 / span 1; }
+.Ta { grid-column: 5 / span 1; grid-row: 6 / span 1; }
+.W { grid-column: 6 / span 1; grid-row: 6 / span 1; }
+.Re { grid-column: 7 / span 1; grid-row: 6 / span 1; }
+.Os { grid-column: 8 / span 1; grid-row: 6 / span 1; }
+.Ir { grid-column: 9 / span 1; grid-row: 6 / span 1; }
+.Pt { grid-column: 10 / span 1; grid-row: 6 / span 1; }
+.Au { grid-column: 11 / span 1; grid-row: 6 / span 1; }
+.Hg { grid-column: 12 / span 1; grid-row: 6 / span 1; }
+.Tl { grid-column: 13 / span 1; grid-row: 6 / span 1; }
+.Pb { grid-column: 14 / span 1; grid-row: 6 / span 1; }
+.Bi { grid-column: 15 / span 1; grid-row: 6 / span 1; }
+.Po { grid-column: 16 / span 1; grid-row: 6 / span 1; }
+.At { grid-column: 17 / span 1; grid-row: 6 / span 1; }
+.Rn { grid-column: 18 / span 1; grid-row: 6 / span 1; }
+.Fr { grid-column: 1 / span 1; grid-row: 7 / span 1; }
+.Ra { grid-column: 2 / span 1; grid-row: 7 / span 1; }
+.Ac { grid-column: 3 / span 1; grid-row: 10 / span 1; }
+.Th { grid-column: 4 / span 1; grid-row: 10 / span 1; }
+.Pa { grid-column: 5 / span 1; grid-row: 10 / span 1; }
+.U { grid-column: 6 / span 1; grid-row: 10 / span 1; }
+.Np { grid-column: 7 / span 1; grid-row: 10 / span 1; }
+.Pu { grid-column: 8 / span 1; grid-row: 10 / span 1; }
+.Am { grid-column: 9 / span 1; grid-row: 10 / span 1; }
+.Cm { grid-column: 10 / span 1; grid-row: 10 / span 1; }
+.Bk { grid-column: 11 / span 1; grid-row: 10 / span 1; }
+.Cf { grid-column: 12 / span 1; grid-row: 10 / span 1; }
+.Es { grid-column: 13 / span 1; grid-row: 10 / span 1; }
+.Fm { grid-column: 14 / span 1; grid-row: 10 / span 1; }
+.Md { grid-column: 15 / span 1; grid-row: 10 / span 1; }
+.No { grid-column: 16 / span 1; grid-row: 10 / span 1; }
+.Lr { grid-column: 17 / span 1; grid-row: 10 / span 1; }
+.Rf { grid-column: 4 / span 1; grid-row: 7 / span 1; }
+.Db { grid-column: 5 / span 1; grid-row: 7 / span 1; }
+.Sg { grid-column: 6 / span 1; grid-row: 7 / span 1; }
+.Bh { grid-column: 7 / span 1; grid-row: 7 / span 1; }
+.Hs { grid-column: 8 / span 1; grid-row: 7 / span 1; }
+.Mt { grid-column: 9 / span 1; grid-row: 7 / span 1; }
+.Ds { grid-column: 10 / span 1; grid-row: 7 / span 1; }
+.Rg { grid-column: 11 / span 1; grid-row: 7 / span 1; }
+.Cn { grid-column: 12 / span 1; grid-row: 7 / span 1; }
+.Nh { grid-column: 13 / span 1; grid-row: 7 / span 1; }
+.Fl { grid-column: 14 / span 1; grid-row: 7 / span 1; }
+.Mc { grid-column: 15 / span 1; grid-row: 7 / span 1; }
+.Lv { grid-column: 16 / span 1; grid-row: 7 / span 1; }
+.Ts { grid-column: 17 / span 1; grid-row: 7 / span 1; }
+.Og { grid-column: 18 / span 1; grid-row: 7 / span 1; }

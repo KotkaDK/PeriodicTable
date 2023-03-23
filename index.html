@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"> 
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+
+    </head>
+    <body >
+
+        <div id="PeriodicTable">
+            <div class="Title text">The Periodic Table</div>
+            <div class="Legend text">
+                <span class="Word NonMetal">Non Metal</span>
+                <span class="Word AlkaliMetal">Alkali Metal</span>
+                <span class="Word AlkalineEarthMetal">Alkaline Earth Metal</span>
+                <span class="Word TransitionMetal">Transition Metal</span>
+                <span class="Word PostTransitionMetal">Post Transition Metal</span>
+                <span class="Word Metalloid">Metalloid</span>
+                <span class="Word Halogen">Halogen</span>
+                <span class="Word NobleGas">Noble Gas</span>
+                <span class="Word Lanthanide">Lanthanide</span>
+                <span class="Word Actinide">Actinide</span>
+                <span class="Word Unknown">Unknown</span>
+            </div>
+
+        </div>
+        
+        <script>
+            // Load JSON data from file
+            fetch("Elements.json")
+              .then(response => response.json())
+              .then(data => {
+                // Create HTML elements based on JSON data
+                var elementList = document.getElementById("PeriodicTable");
+          
+                data.forEach(function(element) {
+                    var elementCard = document.createElement("div");
+                    elementCard.className = "ElementCard " + element.Group + " text " + element.Symbol;
+                    elementCard.innerHTML = `
+                    <span class="ElementWeight">${element.Mass.toFixed(1)}</span>
+                    <span class="ElementNumber">${element.Number}</span>
+                    <span class="ElementSymbol">${element.Symbol}</span>
+                    <span class="ElementName">${element.Name}</span>
+                  `;
+                    elementList.appendChild(elementCard);
+                });
+            })
+            .catch(error => console.error(error));
+        </script>
+        
+    </body>
+</html> 
