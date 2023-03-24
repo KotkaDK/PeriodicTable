@@ -16,12 +16,11 @@
 
             let ElementsInfo = [];
 
-            // Temp fix
-            let firstTime = true;
-
+            // Fetch the file will all the elements
             fetch('Elements.json')
             .then(response => response.json())
             .then(data => {
+                // Save the data in the variable
                 ElementsInfo = data;
             })
             .catch(error => {
@@ -61,13 +60,7 @@
                         card.classList.add('enabled');
                     }
 
-                    let ElementSymbol;
-
-                    if (firstTime) {
-                        ElementSymbol = card.classList[3]
-                    } else {
-                        ElementSymbol = card.classList[2]
-                    }
+                    let ElementSymbol = card.id;
 
                     // Find the obj in ElementsInfo where the "Symbol" is equal to ElementSymbol
                     const element = ElementsInfo.find(obj => obj.Symbol === ElementSymbol);
@@ -131,9 +124,6 @@
                     stateWords.forEach(word => word.style.display = 'block');
                 }
 
-                // The classlist stuff is kinda annoying
-                firstTime = false
-
             }
 
         </script>
@@ -179,6 +169,7 @@
           
                 data.forEach(function(element) {
                     var elementCard = document.createElement("div");
+                    elementCard.id = element.Symbol;
                     elementCard.className = "ElementCard " + element.Group + " text " + element.Symbol + " enabled";
                     elementCard.innerHTML = `
                     <span class="ElementWeight">${element.Mass.toFixed(1)}</span>
