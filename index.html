@@ -14,19 +14,127 @@
 
         <script>
 
-        function ChangeStateOfGroup(Group) {
-            const classGroup = document.querySelectorAll(`.${Group}`);
-  
-            classGroup.forEach(element => {
-                const opacityValue = window.getComputedStyle(element).getPropertyValue('opacity');
-    
-                if (opacityValue == 1.0) {
-                element.style.opacity = '0.25';
-                }           else {
-                element.style.opacity = '1.0';
-                }
+            let ElementsInfo = [];
+
+            // Temp fix
+            let firstTime = true;
+
+            fetch('Elements.json')
+            .then(response => response.json())
+            .then(data => {
+                ElementsInfo = data;
+            })
+            .catch(error => {
+                console.error('Error loading JSON data:', error);
             });
-        }
+
+            function ChangeStateOfGroup(Group) {
+                const classGroup = document.querySelectorAll(`.${Group}`);
+    
+                classGroup.forEach(element => {
+                    if (element.classList.contains("enabled")) {
+                        element.classList.remove("enabled");
+                        element.classList.add("disabled");
+                    } else {
+                        element.classList.remove("disabled");
+                        element.classList.add("enabled");
+                    }
+                });
+            }
+
+            function ChangeView(ToGroup) {
+
+                const groupButton = document.querySelector('.Group');
+                const stateButton = document.querySelector('.State');
+                const stateWords = document.querySelectorAll('.StateWord');
+                const groupWords = document.querySelectorAll('.GroupWord');
+
+                // get all elements with class "ElementCard"
+                const elementCards = document.querySelectorAll('.ElementCard');
+
+                // loop through all the element cards
+                elementCards.forEach(card => {
+                    // check if the card has the class "disabled"
+                    if (card.classList.contains('disabled')) {
+                        // remove the "disabled" class and add the "enabled" class instead
+                        card.classList.remove('disabled');
+                        card.classList.add('enabled');
+                    }
+
+                    let ElementSymbol;
+
+                    if (firstTime) {
+                        ElementSymbol = card.classList[3]
+                    } else {
+                        ElementSymbol = card.classList[2]
+                    }
+
+                    // Find the obj in ElementsInfo where the "Symbol" is equal to ElementSymbol
+                    const element = ElementsInfo.find(obj => obj.Symbol === ElementSymbol);
+                    
+                    if (ToGroup) {
+                        card.classList.remove(element.State);
+                        card.classList.add(element.Group);
+                    } else {
+                        card.classList.remove(element.Group);
+                        card.classList.add(element.State);
+                    }
+
+                    
+                });
+
+                // get all elements with class "Word"
+                const words = document.querySelectorAll('.Word');
+
+                // loop through all the words
+                words.forEach(word => {
+                    // check if the word has the class "disabled"
+                    if (word.classList.contains('disabled')) {
+                        // remove the "disabled" class and add the "enabled" class instead
+                        word.classList.remove('disabled');
+                        word.classList.add('enabled');
+                    }
+                });
+
+                if (ToGroup) {
+                    // Change groupButton state
+                    groupButton.classList.remove('ButtonOff');
+                    groupButton.classList.add('ButtonOn');
+                    groupButton.removeEventListener('click', ChangeView);
+
+                    // Change stateButton state
+                    stateButton.classList.remove('ButtonOn');
+                    stateButton.classList.add('ButtonOff');
+                    stateButton.addEventListener('click', ChangeView);
+
+                    // Hide all elements with class "StateWord"
+                    stateWords.forEach(word => word.style.display = 'none');
+
+                    // Unhide all elements with class "GroupWord"
+                    groupWords.forEach(word => word.style.display = 'block');
+                } else {
+
+                    // Change stateButton state
+                    stateButton.classList.remove('ButtonOff');
+                    stateButton.classList.add('ButtonOn');
+                    stateButton.removeEventListener('click', ChangeView);
+
+                    // Change groupButton state
+                    groupButton.classList.remove('ButtonOn');
+                    groupButton.classList.add('ButtonOff');
+                    groupButton.addEventListener('click', ChangeView);
+
+                    // Hide all elements with class "GroupWord"
+                    groupWords.forEach(word => word.style.display = 'none');
+
+                    // Unhide all elements with class "StateWord"
+                    stateWords.forEach(word => word.style.display = 'block');
+                }
+
+                // The classlist stuff is kinda annoying
+                firstTime = false
+
+            }
 
         </script>
 
@@ -35,20 +143,30 @@
 
         <div id="PeriodicTable">
             <div class="Title text">The Periodic Table</div>
-            <div class="Legend text">
-                <span class="Word NonMetal" onclick="ChangeStateOfGroup('NonMetal')">Non Metal</span>
-                <span class="Word AlkaliMetal" onclick="ChangeStateOfGroup('AlkaliMetal')">Alkali Metal</span>
-                <span class="Word AlkalineEarthMetal" onclick="ChangeStateOfGroup('AlkalineEarthMetal')">Alkaline Earth Metal</span>
-                <span class="Word TransitionMetal" onclick="ChangeStateOfGroup('TransitionMetal')">Transition Metal</span>
-                <span class="Word PostTransitionMetal" onclick="ChangeStateOfGroup('PostTransitionMetal')">Post Transition Metal</span>
-                <span class="Word Metalloid" onclick="ChangeStateOfGroup('Metalloid')">Metalloid</span>
-                <span class="Word Halogen" onclick="ChangeStateOfGroup('Halogen')">Halogen</span>
-                <span class="Word NobleGas" onclick="ChangeStateOfGroup('NobleGas')">Noble Gas</span>
-                <span class="Word Lanthanide" onclick="ChangeStateOfGroup('Lanthanide')">Lanthanide</span>
-                <span class="Word Actinide" onclick="ChangeStateOfGroup('Actinide')">Actinide</span>
-                <span class="Word Unknown" onclick="ChangeStateOfGroup('Unknown')">Unknown</span>
+            <div class="ViewChoiceBox">
+                <div class="ButtonHolder">
+                    <button onclick="ChangeView(true)" class="Group text ButtonOn">Group</button>
+                    <button onclick="ChangeView(false)" class="State text ButtonOff">State</button>
+                </div>
             </div>
-
+            <div class="Legend text">
+                <span class="Word GroupWord NonMetal enabled" onclick="ChangeStateOfGroup('NonMetal')">Non Metal</span>
+                <span class="Word GroupWord AlkaliMetal enabled" onclick="ChangeStateOfGroup('AlkaliMetal')">Alkali Metal</span>
+                <span class="Word GroupWord AlkalineEarthMetal enabled" onclick="ChangeStateOfGroup('AlkalineEarthMetal')">Alkaline Earth Metal</span>
+                <span class="Word GroupWord TransitionMetal enabled" onclick="ChangeStateOfGroup('TransitionMetal')">Transition Metal</span>
+                <span class="Word GroupWord PostTransitionMetal enabled" onclick="ChangeStateOfGroup('PostTransitionMetal')">Post Transition Metal</span>
+                <span class="Word GroupWord Metalloid enabled" onclick="ChangeStateOfGroup('Metalloid')">Metalloid</span>
+                <span class="Word GroupWord Halogen enabled" onclick="ChangeStateOfGroup('Halogen')">Halogen</span>
+                <span class="Word GroupWord NobleGas enabled" onclick="ChangeStateOfGroup('NobleGas')">Noble Gas</span>
+                <span class="Word GroupWord Lanthanide enabled" onclick="ChangeStateOfGroup('Lanthanide')">Lanthanide</span>
+                <span class="Word GroupWord Actinide enabled" onclick="ChangeStateOfGroup('Actinide')">Actinide</span>
+                <span class="Word GroupWord Unknown enabled" onclick="ChangeStateOfGroup('Unknown')">Unknown</span>
+                
+                <span class="Word StateWord solid enabled" onclick="ChangeStateOfGroup('solid')" hidden>Solid</span>
+                <span class="Word StateWord liquid enabled" onclick="ChangeStateOfGroup('liquid')" hidden>Liquid</span>
+                <span class="Word StateWord gas enabled" onclick="ChangeStateOfGroup('gas')" hidden>Gas</span>
+                <span class="Word StateWord unknown enabled" onclick="ChangeStateOfGroup('unknown')" hidden>Unknown</span>
+            </div>
         </div>
         
         <script>
@@ -61,7 +179,7 @@
           
                 data.forEach(function(element) {
                     var elementCard = document.createElement("div");
-                    elementCard.className = "ElementCard " + element.Group + " text " + element.Symbol;
+                    elementCard.className = "ElementCard " + element.Group + " text " + element.Symbol + " enabled";
                     elementCard.innerHTML = `
                     <span class="ElementWeight">${element.Mass.toFixed(1)}</span>
                     <span class="ElementNumber">${element.Number}</span>
@@ -69,6 +187,14 @@
                     <span class="ElementName">${element.Name}</span>
                   `;
                     elementList.appendChild(elementCard);
+
+                    // Add event listener to update URL when elementCard is clicked
+                    elementCard.addEventListener("click", function() {
+                        if (elementCard.classList.contains("enabled")) {
+                            var newUrl = window.location.href.split("?")[0] + "?element=" + element.Symbol;
+                            history.pushState({path: newUrl}, '', newUrl);
+                        }
+                    });
                 });
             })
             .catch(error => console.error(error));

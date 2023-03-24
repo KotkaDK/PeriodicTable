@@ -30,7 +30,7 @@ body {
   cursor: pointer;
 }
 
-.ElementCard:hover {
+.ElementCard.enabled:hover {
   width: 96px;
   height: 96px;
   z-index: 1;
@@ -40,19 +40,19 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.ElementCard:hover .ElementWeight {
+.ElementCard.enabled:hover .ElementWeight {
   font-size: 16px;
 }
 
-.ElementCard:hover .ElementNumber {
+.ElementCard.enabled:hover .ElementNumber {
   font-size: 16px;
 }
 
-.ElementCard:hover .ElementSymbol {
+.ElementCard.enabled:hover .ElementSymbol {
   font-size: 32px;
 }
 
-.ElementCard:hover .ElementName {
+.ElementCard.enabled:hover .ElementName {
   font-size: 16px;
 }
 
@@ -88,16 +88,13 @@ body {
 }
 
 #PeriodicTable {
-  padding: 64px;
+  padding: 32px;
   display: grid;
-  width: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: fit-content;
   grid-template-columns: repeat(18, 72px);
   grid-template-rows: repeat(7, 72px) 32px repeat(2, 72px);
   grid-gap: 2px;
+  margin: 0 auto;
 }
 
 .Legend {
@@ -127,6 +124,40 @@ body {
   user-select: none;
 }
 
+.ViewChoiceBox {
+  width: 220px;
+  height: 72px;
+  grid-column: 14 / span 1;
+  grid-row: 1 / span 1;
+  position: relative;
+}
+
+.ButtonHolder {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+button {
+  width: 72px;
+}
+
+.ButtonOn {
+  background-color: var(--dark);
+  color: var(--light);
+  border: 1px solid var(--dark);
+  cursor: default;
+}
+
+.ButtonOff {
+  background-color: var(--light);
+  color: var(--dark);
+  border: 1px solid var(--dark);
+  cursor: pointer;
+}
+
 .Word {
   padding: 4px;
   height: fit-content;
@@ -134,7 +165,10 @@ body {
   cursor: pointer;
 }
 
-
+.solid { background-color: #8CB84A; }
+.liquid { background-color: #FAB420; }
+.gas { background-color: #2FBCB7; }
+.unknown { background-color: #C5528F; }
 
 .NonMetal { background-color: #8E5EB2; }
 .AlkaliMetal { background-color: #FC466B; }
@@ -266,3 +300,8 @@ body {
 .Lv { grid-column: 16 / span 1; grid-row: 7 / span 1; }
 .Ts { grid-column: 17 / span 1; grid-row: 7 / span 1; }
 .Og { grid-column: 18 / span 1; grid-row: 7 / span 1; }
+
+.disabled {
+  opacity: 0.25;
+  cursor: default;
+}
